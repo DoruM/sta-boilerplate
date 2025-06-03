@@ -10,7 +10,7 @@ export default function decorate(block) {
   if (pictureEl) {
     heroContainer.append(pictureEl);
   } else {
-    heroContainer.classList.add('hero--no-image');
+    heroContainer.classList.add('hero-no-image');
   }
 
   const headingEl = block.querySelectorAll('h1, h2, h3, h4, h5, h6');
