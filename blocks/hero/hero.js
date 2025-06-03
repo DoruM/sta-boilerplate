@@ -1,18 +1,29 @@
 export default function decorate(block) {
-    // block is the old `.hero.block` element
-    const pictureEl = block.querySelector('picture');
-    const headingEl = block.querySelector('h1, h2, h3, h4, h5, h6');
+  const pictureEl = block.querySelector('picture');
 
-    // create the new container, but carry over all of block’s classes & attrs
-    const newDiv = document.createElement('div');
-    newDiv.className = block.className;                      // copy "hero block"
-    Array.from(block.attributes).forEach(attr => {           // copy data-attrs too
-        if (!['class'].includes(attr.name)) newDiv.setAttribute(attr.name, attr.value);
-    });
+  const heroContainer = document.createElement('div');
+  heroContainer.className = block.className;
+  Array.from(block.attributes).forEach((attr) => {
+    if (!['class'].includes(attr.name)) heroContainer.setAttribute(attr.name, attr.value);
+  });
 
+  if (pictureEl) {
+    heroContainer.append(pictureEl);
+  } else {
+    heroContainer.classList.add('hero--no-image');
+  }
+
+  const headingEl = block.querySelectorAll('h1, h2, h3, h4, h5, h6');
+  const paragraphEl = block.querySelectorAll('p');
+
+  if (headingEl || paragraphEl) {
     const textDiv = document.createElement('div');
-    newDiv.append(pictureEl, textDiv);
-    textDiv.append(headingEl);
 
-    block.replaceWith(newDiv);
+    headingEl.forEach((heading) => { textDiv.append(heading); });
+    paragraphEl.forEach((paragraph) => { textDiv.append(paragraph); });
+
+    heroContainer.append(textDiv);
+  }
+
+  block.replaceWith(heroContainer);
 }
