@@ -1,9 +1,9 @@
 export default function decorate(block) {
   const pictureEl = block.querySelector('picture');
-  const textElements = block.querySelectorAll('h1, h2, h3, h4, h5, h6, p');
+  const textElements = block.querySelectorAll('h1, h2, h3, h4, h5, h6, p, a');
 
   const children = [];
-  
+
   if (pictureEl) {
     children.push(pictureEl);
   } else {
