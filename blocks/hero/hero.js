@@ -4,7 +4,7 @@ export default function decorate(block) {
   if (divs.length < 2) return;
 
   const container = document.createElement('div');
-  container.append(...divs.slice(1)); 
+  container.append(...divs.slice(1));
 
   if (!divs[0].querySelector('picture')) {
     block.classList.add('no-image');
